@@ -1,0 +1,7 @@
+This application it's an example the use of Weld for CDI routines in Java SE applications (or swing applications popularity called...)
+
+To run  this app configure an Eclipse run defining the main class:
+
+org.jboss.weld.environment.se.StartMain
+
+Then click to play an fun...
