@@ -13,6 +13,7 @@ import org.jboss.weld.environment.se.events.ContainerInitialized;
 import com.wp.carlos4web.cdi.components.messages.IMessageComponent;
 import com.wp.carlos4web.cdi.components.messages.Message;
 import com.wp.carlos4web.cdi.dao.IMessageDAO;
+import com.wp.carlos4web.cdi.dao.connection.transaction.IConnectionTransaction;
 
 public class Executa {
 	
@@ -24,7 +25,11 @@ public class Executa {
 	
 	@Inject
 	private IMessageDAO dao;
+	
+	@Inject
+	private IMessageDAO daoConsulta;
 
+	@IConnectionTransaction
 	public void main(@Observes ContainerInitialized container, @Parameters List<String> parameters) {
 		
 		for (int i = 0; i < 2; i++) {
@@ -39,7 +44,7 @@ public class Executa {
 			this.dao.save(m);
 		}
 		
-		Collection<Message> mensagens = this.dao.findByMessage(null);
+		Collection<Message> mensagens = this.daoConsulta.findByMessage(null);
 		for (Message message : mensagens) {
 			logger.info("Mensagem ID: " + message.getId());
 		}

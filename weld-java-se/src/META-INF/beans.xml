@@ -1,5 +1,8 @@
 <beans>
-  <alternatives>
-     <alternative>DBConnectionFactory</alternative>
-  </alternatives>
+	<alternatives>
+		<alternative>DBConnectionFactory</alternative>
+	</alternatives>
+	<interceptors>
+		<class>com.wp.carlos4web.cdi.dao.connection.transaction.ConnectionInterceptor</class>
+	</interceptors>
 </beans>

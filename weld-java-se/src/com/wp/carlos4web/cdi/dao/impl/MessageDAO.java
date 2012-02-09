@@ -1,4 +1,4 @@
-package com.wp.carlos4web.cdi.dao;
+package com.wp.carlos4web.cdi.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 
 import com.wp.carlos4web.cdi.components.messages.Message;
+import com.wp.carlos4web.cdi.dao.IMessageDAO;
 
 public class MessageDAO implements IMessageDAO {
 
@@ -52,7 +53,7 @@ public class MessageDAO implements IMessageDAO {
 		logger.info("Consultando mensagens do banco...");
 		
 		try {
-			PreparedStatement ps = this.connection.prepareStatement("SELECT * FROM mensagem ORDER BY id");
+			PreparedStatement ps = this.connection.prepareStatement("SELECT * FROM mensagem ORDER BY id LIMIT 5");
 			
 			ResultSet result = ps.executeQuery();
 			

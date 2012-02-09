@@ -24,7 +24,7 @@ public class MessageComponent implements IMessageComponent{
 	private void init(){
 		if(this.messages == null){
 			logger.info("Configurando o componente de mensagens.");
-			this.messages = new ArrayList<Message>(0);
+			this.messages = new ArrayList<>(0);
 		}
 	}
 	

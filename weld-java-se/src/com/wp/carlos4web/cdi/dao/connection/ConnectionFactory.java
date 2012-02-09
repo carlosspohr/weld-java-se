@@ -6,22 +6,26 @@ import java.sql.SQLException;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
 
+@Singleton
 public class ConnectionFactory{
 
 	@Inject
 	private Logger logger;
 	
+	private Connection connection = null;
+
 	@Produces
-	public Connection getConnection(){
-		logger.info("Configurando uma conexão com o banco de dados...");
-		
-		try {
-			return DriverManager.getConnection("jdbc:mysql://localhost/weld", "root", "123");
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
+	public Connection getConnection() throws SQLException{
+		if(this.connection == null || this.connection.isClosed()){
+			logger.info("Abrindo uma conexão com o banco de dados...");
+			
+			this.connection = DriverManager.getConnection("jdbc:mysql://localhost/gp", "root", "123");
 		}
+		
+		return this.connection;
 	}
 }
